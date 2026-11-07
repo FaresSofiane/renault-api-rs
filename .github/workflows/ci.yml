@@ -1,0 +1,56 @@
+name: Rust
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  desktop:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - run: cargo test --locked
+      - run: cargo check --examples --locked
+      - run: cargo fmt --check
+      - run: cargo clippy --all-targets --locked -- -D warnings
+  ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-ios,aarch64-apple-ios-sim
+      - run: cargo check --locked --target aarch64-apple-ios
+      - run: cargo check --locked --target aarch64-apple-ios-sim
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-linux-android,x86_64-linux-android
+      - name: Check Android targets with the runner's NDK
+        shell: bash
+        run: |
+          ndk_path="${ANDROID_NDK_LATEST_HOME:-${ANDROID_NDK_HOME:-}}"
+          test -n "$ndk_path"
+          toolchain="$ndk_path/toolchains/llvm/prebuilt/linux-x86_64/bin"
+          export CC_aarch64_linux_android="$toolchain/aarch64-linux-android23-clang"
+          export AR_aarch64_linux_android="$toolchain/llvm-ar"
+          export CC_x86_64_linux_android="$toolchain/x86_64-linux-android23-clang"
+          export AR_x86_64_linux_android="$toolchain/llvm-ar"
+          cargo check --locked --target aarch64-linux-android
+          cargo check --locked --target x86_64-linux-android
