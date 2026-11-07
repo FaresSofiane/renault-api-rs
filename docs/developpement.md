@@ -44,6 +44,7 @@ Renault. Ne pas faire dépendre la suite de tests d’un compte ou d’un véhic
 | `tests/authentication.rs` | Identifiants, A2F, code incorrect, sélection email, reprise, session, JWT, concurrence et masquage des erreurs |
 | `tests/vehicle_data.rs` | Fixtures véhicules/télémétrie, unités, compatibilité, routes, headers, enveloppes et erreurs |
 | `tests/configuration.rs` | Locales, racines, paramètres, cookies et traits du client |
+| `tests/full_api.rs` | Parité de la matrice de routes, lectures restantes, corps des commandes, historiques et validations |
 | `tests/common/mod.rs` | Serveurs et données auxiliaires de test |
 
 Les JWT synthétiques servent à l’inspection des claims et aux requêtes mockées.
@@ -52,9 +53,9 @@ validation cryptographique locale, que la crate n’effectue pas.
 
 ## Fixtures
 
-Les réponses JSON copiées de la référence Python sont dans `tests/fixtures`.
-Elles restent à l’intérieur de la crate pour permettre de déplacer ou empaqueter
-le dossier sans dépendre de la copie Python voisine.
+Les réponses JSON adaptées de la référence Python sont dans `tests/fixtures`
+et incluses dans le paquet Cargo. Les tests utilisent ces fichiers directement,
+sans installation de Python ni téléchargement de la référence.
 
 Les identifiants et données personnelles doivent être anonymisés avant d’ajouter
 une fixture. Conserver la structure, les types et les particularités utiles au
@@ -81,7 +82,17 @@ d’action sans valider sa correspondance réelle au protocole Renault.
 
 Pour une lecture existante, vérifier si la différence concerne l’endpoint, les
 unités, les champs ou les services disponibles. Les exclusions actuelles sont
-dans `client.rs` ; la conversion X101VE est dans `wire.rs`.
+dans `endpoints.rs` ; la conversion X101VE est dans `wire.rs`.
+
+`endpoints.rs` est généré depuis l’AST de la référence, sans exécuter le Python :
+
+```sh
+python3 tools/import_endpoints.py /chemin/vers/renault_api/kamereon/models.py
+cargo fmt
+```
+
+L’outil actualise également la matrice de référence des tests. Python sert
+uniquement à cet import de maintenance, jamais à l’exécution de la crate.
 
 Un modèle absent des exclusions utilise la route standard, ce qui n’est pas une
 preuve de support. Ajouter la fixture et un test démontrant la nouvelle règle.
@@ -103,15 +114,21 @@ Modifier un nom, une unité ou une représentation Serde peut affecter les
 consommateurs même si le compilateur accepte la modification à l’intérieur
 de cette crate. Documenter les changements lors de futures versions.
 
-## Conditionnement
+## Vérification du paquet avant publication
 
 ```sh
 cargo package --list --allow-dirty
+cargo package --allow-dirty --locked
 ```
 
-Cette commande permet d’inspecter les fichiers destinés au paquet ; elle ne
-publie rien. Le dossier `target` est ignoré. Conserver sources, guides, exemples,
-fixtures nécessaires et licence d’origine dans un livrable autonome.
+La première commande liste les fichiers destinés au paquet ; la seconde crée
+l’archive `.crate` puis vérifie sa compilation après extraction. Elles ne
+publient rien. Le dossier `target` est ignoré. Le paquet contient les sources,
+guides, exemples, fixtures de test et la licence d’origine.
+
+`--allow-dirty` permet cette vérification pendant le développement. Pour une
+version publiée, commiter les changements puis exécuter `cargo package --locked`
+sans cette option.
 
 Le workflow CI inclut des vérifications desktop et mobiles. Les détails et
 limites de chaque cible sont dans [Plateformes](plateformes.md).

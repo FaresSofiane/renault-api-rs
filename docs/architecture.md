@@ -12,6 +12,8 @@
 | `wire.rs` | Structures JSON privées, décodage et normalisation |
 | `models.rs` | Structures publiques indépendantes des enveloppes Renault |
 | `error.rs` | Contrat d’erreurs public |
+| `vehicle.rs` | Lectures supplémentaires, historiques, commandes et programmations |
+| `endpoints.rs` | Table générée de 28 fonctions et 25 codes modèles |
 
 Le Python est une référence du protocole. Le Rust n’en reproduit pas la chaîne
 de proxies `Client → Account → Vehicle → Session`. Les appels publics passent

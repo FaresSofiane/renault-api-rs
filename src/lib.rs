@@ -9,6 +9,7 @@
 mod auth;
 mod client;
 mod config;
+pub mod endpoints;
 mod error;
 pub mod models;
 mod wire;
@@ -22,6 +23,8 @@ pub use error::{ApiErrorKind, RenaultError, Result, Service};
 // network calls. These modules are only collected by rustdoc's doctest pass.
 #[cfg(doctest)]
 mod documentation {
+    #[doc = include_str!("../docs/commandes.md")]
+    mod commandes {}
     #[doc = include_str!("../docs/demarrage.md")]
     mod demarrage {}
     #[doc = include_str!("../docs/authentification.md")]

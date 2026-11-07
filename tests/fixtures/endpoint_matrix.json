@@ -1,0 +1,1976 @@
+{
+  "A4E1VE": {
+    "actions/charge-set-mode": null,
+    "actions/charge-set-schedule": null,
+    "actions/charge-start": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/settings",
+      "mode": "kcm-settings"
+    },
+    "actions/charge-stop": null,
+    "actions/horn-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/hvac-set-schedule": null,
+    "actions/hvac-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/hvac-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/lights-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": {
+      "path": "/vehicles/{vin}/alerts",
+      "mode": "default"
+    },
+    "battery-status": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/battery-status",
+      "mode": "default"
+    },
+    "charge-history": null,
+    "charge-mode": null,
+    "charge-schedule": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/settings",
+      "mode": "kcm-settings"
+    },
+    "charges": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charges",
+      "mode": "default"
+    },
+    "charging-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charging-settings",
+      "mode": "default"
+    },
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-history",
+      "mode": "default"
+    },
+    "hvac-sessions": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-sessions",
+      "mode": "default"
+    },
+    "hvac-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-settings",
+      "mode": "default"
+    },
+    "hvac-status": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-status",
+      "mode": "default"
+    },
+    "location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/location",
+      "mode": "default"
+    },
+    "lock-status": null,
+    "notification-settings": null,
+    "pressure": null,
+    "res-state": null,
+    "soc-levels": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/soc-levels",
+      "mode": "default"
+    }
+  },
+  "A5E1AE": {
+    "actions/charge-set-mode": null,
+    "actions/charge-set-schedule": null,
+    "actions/charge-start": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/settings",
+      "mode": "kcm-settings"
+    },
+    "actions/charge-stop": null,
+    "actions/horn-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/hvac-set-schedule": null,
+    "actions/hvac-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/hvac-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "kca-stop"
+    },
+    "actions/lights-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": null,
+    "battery-status": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/battery-status",
+      "mode": "default"
+    },
+    "charge-history": null,
+    "charge-mode": null,
+    "charge-schedule": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/settings",
+      "mode": "kcm-settings"
+    },
+    "charges": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charges",
+      "mode": "default"
+    },
+    "charging-settings": null,
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": null,
+    "hvac-sessions": null,
+    "hvac-settings": null,
+    "hvac-status": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-status",
+      "mode": "default"
+    },
+    "location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/location",
+      "mode": "default"
+    },
+    "lock-status": null,
+    "notification-settings": null,
+    "pressure": null,
+    "res-state": null,
+    "soc-levels": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/soc-levels",
+      "mode": "default"
+    }
+  },
+  "BD11SL": {
+    "actions/charge-set-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charge-mode",
+      "mode": "default"
+    },
+    "actions/charge-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/charge-schedule",
+      "mode": "default"
+    },
+    "actions/charge-start": null,
+    "actions/charge-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charging-start",
+      "mode": "default"
+    },
+    "actions/horn-start": null,
+    "actions/hvac-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/hvac-schedule",
+      "mode": "default"
+    },
+    "actions/hvac-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/hvac-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/lights-start": null,
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": null,
+    "battery-status": null,
+    "charge-history": null,
+    "charge-mode": null,
+    "charge-schedule": null,
+    "charges": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charges",
+      "mode": "default"
+    },
+    "charging-settings": null,
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": null,
+    "hvac-sessions": null,
+    "hvac-settings": null,
+    "hvac-status": null,
+    "location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/location",
+      "mode": "default"
+    },
+    "lock-status": null,
+    "notification-settings": null,
+    "pressure": null,
+    "res-state": null,
+    "soc-levels": null
+  },
+  "DU31SU": {
+    "actions/charge-set-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charge-mode",
+      "mode": "default"
+    },
+    "actions/charge-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/charge-schedule",
+      "mode": "default"
+    },
+    "actions/charge-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charging-start",
+      "mode": "default"
+    },
+    "actions/charge-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charging-start",
+      "mode": "default"
+    },
+    "actions/horn-start": null,
+    "actions/hvac-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/hvac-schedule",
+      "mode": "default"
+    },
+    "actions/hvac-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/hvac-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/lights-start": null,
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": {
+      "path": "/vehicles/{vin}/alerts",
+      "mode": "default"
+    },
+    "battery-status": null,
+    "charge-history": null,
+    "charge-mode": null,
+    "charge-schedule": null,
+    "charges": null,
+    "charging-settings": null,
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": null,
+    "hvac-sessions": null,
+    "hvac-settings": null,
+    "hvac-status": null,
+    "location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/location",
+      "mode": "default"
+    },
+    "lock-status": null,
+    "notification-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/notification-settings",
+      "mode": "default"
+    },
+    "pressure": null,
+    "res-state": null,
+    "soc-levels": null
+  },
+  "R5E1VE": {
+    "actions/charge-set-mode": null,
+    "actions/charge-set-schedule": null,
+    "actions/charge-start": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/settings",
+      "mode": "kcm-settings"
+    },
+    "actions/charge-stop": null,
+    "actions/horn-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/hvac-set-schedule": null,
+    "actions/hvac-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/hvac-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "kca-stop"
+    },
+    "actions/lights-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": {
+      "path": "/vehicles/{vin}/alerts",
+      "mode": "default"
+    },
+    "battery-status": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/battery-status",
+      "mode": "default"
+    },
+    "charge-history": null,
+    "charge-mode": null,
+    "charge-schedule": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/settings",
+      "mode": "kcm-settings"
+    },
+    "charges": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charges",
+      "mode": "default"
+    },
+    "charging-settings": null,
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": null,
+    "hvac-sessions": null,
+    "hvac-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-settings",
+      "mode": "default"
+    },
+    "hvac-status": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-status",
+      "mode": "default"
+    },
+    "location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/location",
+      "mode": "default"
+    },
+    "lock-status": null,
+    "notification-settings": null,
+    "pressure": null,
+    "res-state": null,
+    "soc-levels": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/soc-levels",
+      "mode": "default"
+    }
+  },
+  "X071VE": {
+    "actions/charge-set-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charge-mode",
+      "mode": "default"
+    },
+    "actions/charge-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/charge-schedule",
+      "mode": "default"
+    },
+    "actions/charge-start": {
+      "path": "/kcm/v1/vehicles/{vin}/charge/start",
+      "mode": "kcm"
+    },
+    "actions/charge-stop": null,
+    "actions/horn-start": null,
+    "actions/hvac-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/hvac-schedule",
+      "mode": "default"
+    },
+    "actions/hvac-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/hvac-stop": null,
+    "actions/lights-start": null,
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": null,
+    "battery-status": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/battery-status",
+      "mode": "default"
+    },
+    "charge-history": null,
+    "charge-mode": null,
+    "charge-schedule": null,
+    "charges": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charges",
+      "mode": "default"
+    },
+    "charging-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charging-settings",
+      "mode": "default"
+    },
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": null,
+    "hvac-sessions": null,
+    "hvac-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-settings",
+      "mode": "default"
+    },
+    "hvac-status": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-status",
+      "mode": "default"
+    },
+    "location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/location",
+      "mode": "default"
+    },
+    "lock-status": null,
+    "notification-settings": null,
+    "pressure": null,
+    "res-state": null,
+    "soc-levels": null
+  },
+  "X101VE": {
+    "actions/charge-set-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charge-mode",
+      "mode": "default"
+    },
+    "actions/charge-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/charge-schedule",
+      "mode": "default"
+    },
+    "actions/charge-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charging-start",
+      "mode": "default"
+    },
+    "actions/charge-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charging-start",
+      "mode": "default"
+    },
+    "actions/horn-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/hvac-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/hvac-schedule",
+      "mode": "default"
+    },
+    "actions/hvac-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/hvac-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/lights-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": {
+      "path": "/vehicles/{vin}/alerts",
+      "mode": "default"
+    },
+    "battery-status": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/battery-status",
+      "mode": "default"
+    },
+    "charge-history": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charge-history",
+      "mode": "default"
+    },
+    "charge-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charge-mode",
+      "mode": "default"
+    },
+    "charge-schedule": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charge-schedule",
+      "mode": "default"
+    },
+    "charges": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charges",
+      "mode": "default"
+    },
+    "charging-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charging-settings",
+      "mode": "default"
+    },
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-history",
+      "mode": "default"
+    },
+    "hvac-sessions": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-sessions",
+      "mode": "default"
+    },
+    "hvac-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-settings",
+      "mode": "default"
+    },
+    "hvac-status": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-status",
+      "mode": "default"
+    },
+    "location": null,
+    "lock-status": null,
+    "notification-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/notification-settings",
+      "mode": "default"
+    },
+    "pressure": null,
+    "res-state": null,
+    "soc-levels": null
+  },
+  "X102VE": {
+    "actions/charge-set-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charge-mode",
+      "mode": "default"
+    },
+    "actions/charge-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/charge-schedule",
+      "mode": "default"
+    },
+    "actions/charge-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charging-start",
+      "mode": "default"
+    },
+    "actions/charge-stop": {
+      "path": "/kcm/v1/vehicles/{vin}/charge/pause-resume",
+      "mode": "kcm-pause-resume"
+    },
+    "actions/horn-start": null,
+    "actions/hvac-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/hvac-schedule",
+      "mode": "default"
+    },
+    "actions/hvac-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/hvac-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/lights-start": null,
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": {
+      "path": "/vehicles/{vin}/alerts",
+      "mode": "default"
+    },
+    "battery-status": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/battery-status",
+      "mode": "default"
+    },
+    "charge-history": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charge-history",
+      "mode": "default"
+    },
+    "charge-mode": null,
+    "charge-schedule": null,
+    "charges": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charges",
+      "mode": "default"
+    },
+    "charging-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charging-settings",
+      "mode": "default"
+    },
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-history",
+      "mode": "default"
+    },
+    "hvac-sessions": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-sessions",
+      "mode": "default"
+    },
+    "hvac-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-settings",
+      "mode": "default"
+    },
+    "hvac-status": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-status",
+      "mode": "default"
+    },
+    "location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/location",
+      "mode": "default"
+    },
+    "lock-status": null,
+    "notification-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/notification-settings",
+      "mode": "default"
+    },
+    "pressure": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/pressure",
+      "mode": "default"
+    },
+    "res-state": null,
+    "soc-levels": null
+  },
+  "XBG1VE": {
+    "actions/charge-set-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charge-mode",
+      "mode": "default"
+    },
+    "actions/charge-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/charge-schedule",
+      "mode": "default"
+    },
+    "actions/charge-start": {
+      "path": "/kcm/v1/vehicles/{vin}/charge/pause-resume",
+      "mode": "kcm-pause-resume"
+    },
+    "actions/charge-stop": {
+      "path": "/kcm/v1/vehicles/{vin}/charge/pause-resume",
+      "mode": "kcm-pause-resume"
+    },
+    "actions/horn-start": null,
+    "actions/hvac-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/hvac-schedule",
+      "mode": "default"
+    },
+    "actions/hvac-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/hvac-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "kca-stop"
+    },
+    "actions/lights-start": null,
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": null,
+    "battery-status": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/battery-status",
+      "mode": "default"
+    },
+    "charge-history": null,
+    "charge-mode": null,
+    "charge-schedule": null,
+    "charges": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charges",
+      "mode": "default"
+    },
+    "charging-settings": null,
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": null,
+    "hvac-sessions": null,
+    "hvac-settings": null,
+    "hvac-status": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-status",
+      "mode": "default"
+    },
+    "location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/location",
+      "mode": "default"
+    },
+    "lock-status": null,
+    "notification-settings": null,
+    "pressure": null,
+    "res-state": null,
+    "soc-levels": null
+  },
+  "XBG2VE": {
+    "actions/charge-set-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charge-mode",
+      "mode": "default"
+    },
+    "actions/charge-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/charge-schedule",
+      "mode": "default"
+    },
+    "actions/charge-start": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/settings",
+      "mode": "kcm-settings"
+    },
+    "actions/charge-stop": null,
+    "actions/horn-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/hvac-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/hvac-schedule",
+      "mode": "default"
+    },
+    "actions/hvac-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/hvac-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "kca-stop"
+    },
+    "actions/lights-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": null,
+    "battery-status": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/battery-status",
+      "mode": "default"
+    },
+    "charge-history": null,
+    "charge-mode": null,
+    "charge-schedule": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/settings",
+      "mode": "kcm-settings"
+    },
+    "charges": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charges",
+      "mode": "default"
+    },
+    "charging-settings": null,
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": null,
+    "hvac-sessions": null,
+    "hvac-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-settings",
+      "mode": "default"
+    },
+    "hvac-status": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-status",
+      "mode": "default"
+    },
+    "location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/location",
+      "mode": "default"
+    },
+    "lock-status": null,
+    "notification-settings": null,
+    "pressure": null,
+    "res-state": null,
+    "soc-levels": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/soc-levels",
+      "mode": "default"
+    }
+  },
+  "XCB1SE": {
+    "actions/charge-set-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charge-mode",
+      "mode": "default"
+    },
+    "actions/charge-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/charge-schedule",
+      "mode": "default"
+    },
+    "actions/charge-start": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/settings",
+      "mode": "kcm-settings"
+    },
+    "actions/charge-stop": null,
+    "actions/horn-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/hvac-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/hvac-schedule",
+      "mode": "default"
+    },
+    "actions/hvac-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/hvac-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/lights-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": {
+      "path": "/vehicles/{vin}/alerts",
+      "mode": "default"
+    },
+    "battery-status": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/battery-status",
+      "mode": "default"
+    },
+    "charge-history": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charge-history",
+      "mode": "default"
+    },
+    "charge-mode": null,
+    "charge-schedule": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/settings",
+      "mode": "kcm-settings"
+    },
+    "charges": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charges",
+      "mode": "default"
+    },
+    "charging-settings": null,
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-history",
+      "mode": "default"
+    },
+    "hvac-sessions": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-sessions",
+      "mode": "default"
+    },
+    "hvac-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-settings",
+      "mode": "default"
+    },
+    "hvac-status": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-status",
+      "mode": "default"
+    },
+    "location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/location",
+      "mode": "default"
+    },
+    "lock-status": null,
+    "notification-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/notification-settings",
+      "mode": "default"
+    },
+    "pressure": null,
+    "res-state": null,
+    "soc-levels": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/soc-levels",
+      "mode": "default"
+    }
+  },
+  "XCB1VE": {
+    "actions/charge-set-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charge-mode",
+      "mode": "default"
+    },
+    "actions/charge-set-schedule": {
+      "path": "/kcm/v1/vehicles/{vin}/charge/schedule",
+      "mode": "kcm"
+    },
+    "actions/charge-start": {
+      "path": "/kcm/v1/vehicles/{vin}/charge/start",
+      "mode": "kcm"
+    },
+    "actions/charge-stop": null,
+    "actions/horn-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/hvac-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/hvac-schedule",
+      "mode": "default"
+    },
+    "actions/hvac-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/hvac-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "kca-stop"
+    },
+    "actions/lights-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": {
+      "path": "/vehicles/{vin}/alerts",
+      "mode": "default"
+    },
+    "battery-status": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/battery-status",
+      "mode": "default"
+    },
+    "charge-history": null,
+    "charge-mode": null,
+    "charge-schedule": null,
+    "charges": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charges",
+      "mode": "default"
+    },
+    "charging-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charging-settings",
+      "mode": "default"
+    },
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": null,
+    "hvac-sessions": null,
+    "hvac-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-settings",
+      "mode": "default"
+    },
+    "hvac-status": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-status",
+      "mode": "default"
+    },
+    "location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/location",
+      "mode": "default"
+    },
+    "lock-status": null,
+    "notification-settings": null,
+    "pressure": null,
+    "res-state": null,
+    "soc-levels": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/soc-levels",
+      "mode": "default"
+    }
+  },
+  "XDD1VE": {
+    "actions/charge-set-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charge-mode",
+      "mode": "default"
+    },
+    "actions/charge-set-schedule": null,
+    "actions/charge-start": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/settings",
+      "mode": "kcm-settings"
+    },
+    "actions/charge-stop": null,
+    "actions/horn-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/hvac-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/hvac-schedule",
+      "mode": "default"
+    },
+    "actions/hvac-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/hvac-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/lights-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": {
+      "path": "/vehicles/{vin}/alerts",
+      "mode": "default"
+    },
+    "battery-status": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/battery-status",
+      "mode": "default"
+    },
+    "charge-history": null,
+    "charge-mode": null,
+    "charge-schedule": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/settings",
+      "mode": "kcm-settings"
+    },
+    "charges": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charges",
+      "mode": "default"
+    },
+    "charging-settings": null,
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": null,
+    "hvac-sessions": null,
+    "hvac-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-settings",
+      "mode": "default"
+    },
+    "hvac-status": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-status",
+      "mode": "default"
+    },
+    "location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/location",
+      "mode": "default"
+    },
+    "lock-status": null,
+    "notification-settings": null,
+    "pressure": null,
+    "res-state": null,
+    "soc-levels": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/soc-levels",
+      "mode": "default"
+    }
+  },
+  "XFB2BI": {
+    "actions/charge-set-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charge-mode",
+      "mode": "default"
+    },
+    "actions/charge-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/charge-schedule",
+      "mode": "default"
+    },
+    "actions/charge-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charging-start",
+      "mode": "default"
+    },
+    "actions/charge-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charging-start",
+      "mode": "default"
+    },
+    "actions/horn-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/hvac-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/hvac-schedule",
+      "mode": "default"
+    },
+    "actions/hvac-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/hvac-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/lights-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": {
+      "path": "/vehicles/{vin}/alerts",
+      "mode": "default"
+    },
+    "battery-status": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/battery-status",
+      "mode": "default"
+    },
+    "charge-history": null,
+    "charge-mode": null,
+    "charge-schedule": null,
+    "charges": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charges",
+      "mode": "default"
+    },
+    "charging-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charging-settings",
+      "mode": "default"
+    },
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": null,
+    "hvac-sessions": null,
+    "hvac-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-settings",
+      "mode": "default"
+    },
+    "hvac-status": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-status",
+      "mode": "default"
+    },
+    "location": null,
+    "lock-status": null,
+    "notification-settings": null,
+    "pressure": null,
+    "res-state": null,
+    "soc-levels": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/soc-levels",
+      "mode": "default"
+    }
+  },
+  "XFB2BK": {
+    "actions/charge-set-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charge-mode",
+      "mode": "default"
+    },
+    "actions/charge-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/charge-schedule",
+      "mode": "default"
+    },
+    "actions/charge-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charging-start",
+      "mode": "default"
+    },
+    "actions/charge-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charging-start",
+      "mode": "default"
+    },
+    "actions/horn-start": null,
+    "actions/hvac-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/hvac-schedule",
+      "mode": "default"
+    },
+    "actions/hvac-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/hvac-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/lights-start": null,
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": {
+      "path": "/vehicles/{vin}/alerts",
+      "mode": "default"
+    },
+    "battery-status": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/battery-status",
+      "mode": "default"
+    },
+    "charge-history": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charge-history",
+      "mode": "default"
+    },
+    "charge-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charge-mode",
+      "mode": "default"
+    },
+    "charge-schedule": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charge-schedule",
+      "mode": "default"
+    },
+    "charges": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charges",
+      "mode": "default"
+    },
+    "charging-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charging-settings",
+      "mode": "default"
+    },
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": null,
+    "hvac-sessions": null,
+    "hvac-settings": null,
+    "hvac-status": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-status",
+      "mode": "default"
+    },
+    "location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/location",
+      "mode": "default"
+    },
+    "lock-status": null,
+    "notification-settings": null,
+    "pressure": null,
+    "res-state": null,
+    "soc-levels": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/soc-levels",
+      "mode": "default"
+    }
+  },
+  "XHN1CP": {
+    "actions/charge-set-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charge-mode",
+      "mode": "default"
+    },
+    "actions/charge-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/charge-schedule",
+      "mode": "default"
+    },
+    "actions/charge-start": null,
+    "actions/charge-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charging-start",
+      "mode": "default"
+    },
+    "actions/horn-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/hvac-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/hvac-schedule",
+      "mode": "default"
+    },
+    "actions/hvac-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/hvac-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/lights-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": {
+      "path": "/vehicles/{vin}/alerts",
+      "mode": "default"
+    },
+    "battery-status": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/battery-status",
+      "mode": "default"
+    },
+    "charge-history": null,
+    "charge-mode": null,
+    "charge-schedule": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/settings",
+      "mode": "kcm-settings"
+    },
+    "charges": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charges",
+      "mode": "default"
+    },
+    "charging-settings": null,
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": null,
+    "hvac-sessions": null,
+    "hvac-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-settings",
+      "mode": "default"
+    },
+    "hvac-status": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-status",
+      "mode": "default"
+    },
+    "location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/location",
+      "mode": "default"
+    },
+    "lock-status": null,
+    "notification-settings": null,
+    "pressure": null,
+    "res-state": null,
+    "soc-levels": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/soc-levels",
+      "mode": "default"
+    }
+  },
+  "XHN1ML": {
+    "actions/charge-set-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charge-mode",
+      "mode": "default"
+    },
+    "actions/charge-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/charge-schedule",
+      "mode": "default"
+    },
+    "actions/charge-start": null,
+    "actions/charge-stop": null,
+    "actions/horn-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/hvac-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/hvac-schedule",
+      "mode": "default"
+    },
+    "actions/hvac-start": null,
+    "actions/hvac-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/lights-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": null,
+    "battery-status": null,
+    "charge-history": null,
+    "charge-mode": null,
+    "charge-schedule": null,
+    "charges": null,
+    "charging-settings": null,
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": null,
+    "hvac-sessions": null,
+    "hvac-settings": null,
+    "hvac-status": null,
+    "location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/location",
+      "mode": "default"
+    },
+    "lock-status": null,
+    "notification-settings": null,
+    "pressure": null,
+    "res-state": null,
+    "soc-levels": null
+  },
+  "XHN1SU": {
+    "actions/charge-set-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charge-mode",
+      "mode": "default"
+    },
+    "actions/charge-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/charge-schedule",
+      "mode": "default"
+    },
+    "actions/charge-start": null,
+    "actions/charge-stop": null,
+    "actions/horn-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/hvac-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/hvac-schedule",
+      "mode": "default"
+    },
+    "actions/hvac-start": null,
+    "actions/hvac-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/lights-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": {
+      "path": "/vehicles/{vin}/alerts",
+      "mode": "default"
+    },
+    "battery-status": null,
+    "charge-history": null,
+    "charge-mode": null,
+    "charge-schedule": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charge-schedule",
+      "mode": "default"
+    },
+    "charges": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charges",
+      "mode": "default"
+    },
+    "charging-settings": null,
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-history",
+      "mode": "default"
+    },
+    "hvac-sessions": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-sessions",
+      "mode": "default"
+    },
+    "hvac-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-settings",
+      "mode": "default"
+    },
+    "hvac-status": null,
+    "location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/location",
+      "mode": "default"
+    },
+    "lock-status": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/lock-status",
+      "mode": "default"
+    },
+    "notification-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/notification-settings",
+      "mode": "default"
+    },
+    "pressure": null,
+    "res-state": null,
+    "soc-levels": null
+  },
+  "XJA1VP": {
+    "actions/charge-set-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charge-mode",
+      "mode": "default"
+    },
+    "actions/charge-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/charge-schedule",
+      "mode": "default"
+    },
+    "actions/charge-start": null,
+    "actions/charge-stop": null,
+    "actions/horn-start": null,
+    "actions/hvac-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/hvac-schedule",
+      "mode": "default"
+    },
+    "actions/hvac-start": null,
+    "actions/hvac-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/lights-start": null,
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": null,
+    "battery-status": null,
+    "charge-history": null,
+    "charge-mode": null,
+    "charge-schedule": null,
+    "charges": null,
+    "charging-settings": null,
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": null,
+    "hvac-sessions": null,
+    "hvac-settings": null,
+    "hvac-status": null,
+    "location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/location",
+      "mode": "default"
+    },
+    "lock-status": null,
+    "notification-settings": null,
+    "pressure": null,
+    "res-state": null,
+    "soc-levels": null
+  },
+  "XJA2VP": {
+    "actions/charge-set-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charge-mode",
+      "mode": "default"
+    },
+    "actions/charge-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/charge-schedule",
+      "mode": "default"
+    },
+    "actions/charge-start": null,
+    "actions/charge-stop": null,
+    "actions/horn-start": null,
+    "actions/hvac-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/hvac-schedule",
+      "mode": "default"
+    },
+    "actions/hvac-start": null,
+    "actions/hvac-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/lights-start": null,
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": null,
+    "battery-status": null,
+    "charge-history": null,
+    "charge-mode": null,
+    "charge-schedule": null,
+    "charges": null,
+    "charging-settings": null,
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": null,
+    "hvac-sessions": null,
+    "hvac-settings": null,
+    "hvac-status": null,
+    "location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/location",
+      "mode": "default"
+    },
+    "lock-status": null,
+    "notification-settings": null,
+    "pressure": null,
+    "res-state": null,
+    "soc-levels": null
+  },
+  "XJB1SU": {
+    "actions/charge-set-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charge-mode",
+      "mode": "default"
+    },
+    "actions/charge-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/charge-schedule",
+      "mode": "default"
+    },
+    "actions/charge-start": null,
+    "actions/charge-stop": null,
+    "actions/horn-start": null,
+    "actions/hvac-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/hvac-schedule",
+      "mode": "default"
+    },
+    "actions/hvac-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/hvac-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/lights-start": null,
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": {
+      "path": "/vehicles/{vin}/alerts",
+      "mode": "default"
+    },
+    "battery-status": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/battery-status",
+      "mode": "default"
+    },
+    "charge-history": null,
+    "charge-mode": null,
+    "charge-schedule": null,
+    "charges": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charges",
+      "mode": "default"
+    },
+    "charging-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charging-settings",
+      "mode": "default"
+    },
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": null,
+    "hvac-sessions": null,
+    "hvac-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-settings",
+      "mode": "default"
+    },
+    "hvac-status": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-status",
+      "mode": "default"
+    },
+    "location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/location",
+      "mode": "default"
+    },
+    "lock-status": null,
+    "notification-settings": null,
+    "pressure": null,
+    "res-state": null,
+    "soc-levels": null
+  },
+  "XJB2CP": {
+    "actions/charge-set-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charge-mode",
+      "mode": "default"
+    },
+    "actions/charge-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/charge-schedule",
+      "mode": "default"
+    },
+    "actions/charge-start": null,
+    "actions/charge-stop": null,
+    "actions/horn-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/hvac-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/hvac-schedule",
+      "mode": "default"
+    },
+    "actions/hvac-start": null,
+    "actions/hvac-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/lights-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": {
+      "path": "/vehicles/{vin}/alerts",
+      "mode": "default"
+    },
+    "battery-status": null,
+    "charge-history": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charge-history",
+      "mode": "default"
+    },
+    "charge-mode": null,
+    "charge-schedule": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charge-schedule",
+      "mode": "default"
+    },
+    "charges": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charges",
+      "mode": "default"
+    },
+    "charging-settings": null,
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-history",
+      "mode": "default"
+    },
+    "hvac-sessions": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-sessions",
+      "mode": "default"
+    },
+    "hvac-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-settings",
+      "mode": "default"
+    },
+    "hvac-status": null,
+    "location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/location",
+      "mode": "default"
+    },
+    "lock-status": null,
+    "notification-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/notification-settings",
+      "mode": "default"
+    },
+    "pressure": null,
+    "res-state": null,
+    "soc-levels": null
+  },
+  "XJB2SU": {
+    "actions/charge-set-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charge-mode",
+      "mode": "default"
+    },
+    "actions/charge-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/charge-schedule",
+      "mode": "default"
+    },
+    "actions/charge-start": null,
+    "actions/charge-stop": null,
+    "actions/horn-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/hvac-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/hvac-schedule",
+      "mode": "default"
+    },
+    "actions/hvac-start": null,
+    "actions/hvac-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/lights-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": null,
+    "battery-status": null,
+    "charge-history": null,
+    "charge-mode": null,
+    "charge-schedule": null,
+    "charges": null,
+    "charging-settings": null,
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": null,
+    "hvac-sessions": null,
+    "hvac-settings": null,
+    "hvac-status": null,
+    "location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/location",
+      "mode": "default"
+    },
+    "lock-status": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/lock-status",
+      "mode": "default"
+    },
+    "notification-settings": null,
+    "pressure": null,
+    "res-state": null,
+    "soc-levels": null
+  },
+  "XJF2BI": {
+    "actions/charge-set-mode": null,
+    "actions/charge-set-schedule": null,
+    "actions/charge-start": null,
+    "actions/charge-stop": null,
+    "actions/horn-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/hvac-set-schedule": null,
+    "actions/hvac-start": null,
+    "actions/hvac-stop": null,
+    "actions/lights-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": null,
+    "battery-status": null,
+    "charge-history": null,
+    "charge-mode": null,
+    "charge-schedule": null,
+    "charges": null,
+    "charging-settings": null,
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": null,
+    "hvac-sessions": null,
+    "hvac-settings": null,
+    "hvac-status": null,
+    "location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/location",
+      "mode": "default"
+    },
+    "lock-status": null,
+    "notification-settings": null,
+    "pressure": null,
+    "res-state": null,
+    "soc-levels": null
+  },
+  "XJL2TR": {
+    "actions/charge-set-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charge-mode",
+      "mode": "default"
+    },
+    "actions/charge-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/charge-schedule",
+      "mode": "default"
+    },
+    "actions/charge-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charging-start",
+      "mode": "default"
+    },
+    "actions/charge-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charging-start",
+      "mode": "default"
+    },
+    "actions/horn-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/hvac-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/hvac-schedule",
+      "mode": "default"
+    },
+    "actions/hvac-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/hvac-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/lights-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": {
+      "path": "/vehicles/{vin}/alerts",
+      "mode": "default"
+    },
+    "battery-status": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/battery-status",
+      "mode": "default"
+    },
+    "charge-history": null,
+    "charge-mode": null,
+    "charge-schedule": null,
+    "charges": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charges",
+      "mode": "default"
+    },
+    "charging-settings": null,
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": null,
+    "hvac-sessions": null,
+    "hvac-settings": null,
+    "hvac-status": null,
+    "location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/location",
+      "mode": "default"
+    },
+    "lock-status": null,
+    "notification-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/notification-settings",
+      "mode": "default"
+    },
+    "pressure": null,
+    "res-state": null,
+    "soc-levels": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/soc-levels",
+      "mode": "default"
+    }
+  },
+  "UNKNOWN": {
+    "actions/charge-set-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charge-mode",
+      "mode": "default"
+    },
+    "actions/charge-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/charge-schedule",
+      "mode": "default"
+    },
+    "actions/charge-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charging-start",
+      "mode": "default"
+    },
+    "actions/charge-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/charging-start",
+      "mode": "default"
+    },
+    "actions/horn-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/hvac-set-schedule": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/actions/hvac-schedule",
+      "mode": "default"
+    },
+    "actions/hvac-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/hvac-stop": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/hvac-start",
+      "mode": "default"
+    },
+    "actions/lights-start": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/horn-lights",
+      "mode": "default"
+    },
+    "actions/refresh-location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/actions/refresh-location",
+      "mode": "default"
+    },
+    "alerts": {
+      "path": "/vehicles/{vin}/alerts",
+      "mode": "default"
+    },
+    "battery-status": {
+      "path": "/kca/car-adapter/v2/cars/{vin}/battery-status",
+      "mode": "default"
+    },
+    "charge-history": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charge-history",
+      "mode": "default"
+    },
+    "charge-mode": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charge-mode",
+      "mode": "default"
+    },
+    "charge-schedule": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charge-schedule",
+      "mode": "default"
+    },
+    "charges": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charges",
+      "mode": "default"
+    },
+    "charging-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/charging-settings",
+      "mode": "default"
+    },
+    "cockpit": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/cockpit",
+      "mode": "default"
+    },
+    "hvac-history": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-history",
+      "mode": "default"
+    },
+    "hvac-sessions": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-sessions",
+      "mode": "default"
+    },
+    "hvac-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-settings",
+      "mode": "default"
+    },
+    "hvac-status": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/hvac-status",
+      "mode": "default"
+    },
+    "location": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/location",
+      "mode": "default"
+    },
+    "lock-status": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/lock-status",
+      "mode": "default"
+    },
+    "notification-settings": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/notification-settings",
+      "mode": "default"
+    },
+    "pressure": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/pressure",
+      "mode": "default"
+    },
+    "res-state": {
+      "path": "/kca/car-adapter/v1/cars/{vin}/res-state",
+      "mode": "default"
+    },
+    "soc-levels": {
+      "path": "/kcm/v1/vehicles/{vin}/ev/soc-levels",
+      "mode": "default"
+    }
+  }
+}

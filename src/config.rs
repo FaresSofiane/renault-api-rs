@@ -18,6 +18,18 @@ pub struct Endpoints {
 }
 
 impl Endpoints {
+    pub fn gigya_url(&self) -> &str {
+        self.gigya_url.as_str()
+    }
+    pub fn gigya_key(&self) -> &str {
+        &self.gigya_key
+    }
+    pub fn kamereon_url(&self) -> &str {
+        self.kamereon_url.as_str()
+    }
+    pub fn kamereon_key(&self) -> &str {
+        &self.kamereon_key
+    }
     /// Roots must be HTTPS (HTTP is accepted only on loopback for local tests).
     pub fn new(
         gigya_url: &str,
@@ -50,6 +62,69 @@ pub struct Config {
 }
 
 impl Config {
+    pub fn locale(&self) -> &str {
+        &self.locale
+    }
+    pub fn country(&self) -> &str {
+        &self.country
+    }
+    pub fn endpoints(&self) -> &Endpoints {
+        &self.endpoints
+    }
+    pub fn timeout(&self) -> Duration {
+        self.timeout
+    }
+    /// Explicitly fetch public regional API settings from Renault. Requires Tokio;
+    /// this never reads user credentials and does not persist the result.
+    pub async fn discover(locale: &str) -> Result<Self> {
+        Self::discover_from(
+            locale,
+            "https://renault-wrd-prod-1-euw1-myrapp-one.s3-eu-west-1.amazonaws.com/",
+        )
+        .await
+    }
+
+    async fn discover_from(locale: &str, root: &str) -> Result<Self> {
+        let country = validate_locale(locale)?;
+        let root = root_url(root)?;
+        let url = root
+            .join(&format!("configuration/android/config_{locale}.json"))
+            .map_err(|_| RenaultError::Configuration("invalid configuration URL".into()))?;
+        let http = crate::client::http_client(Duration::from_secs(30))?;
+        let (status, value) =
+            crate::client::read_json(http.get(url).send().await?, crate::Service::Configuration)
+                .await?;
+        if !(200..300).contains(&status) {
+            return Err(RenaultError::Http {
+                service: crate::Service::Configuration,
+                status,
+            });
+        }
+        #[derive(serde::Deserialize)]
+        struct Server {
+            apikey: String,
+            target: String,
+        }
+        #[derive(serde::Deserialize)]
+        struct Servers {
+            #[serde(rename = "gigyaProd")]
+            gigya: Server,
+            #[serde(rename = "wiredProd")]
+            wired: Server,
+        }
+        #[derive(serde::Deserialize)]
+        struct Document {
+            servers: Servers,
+        }
+        let document: Document = crate::wire::decode(value, crate::Service::Configuration)?;
+        let endpoints = Endpoints::new(
+            &document.servers.gigya.target,
+            document.servers.gigya.apikey,
+            &document.servers.wired.target,
+            document.servers.wired.apikey,
+        )?;
+        Self::with_endpoints(locale, country, endpoints)
+    }
     /// Use a locale supported by the Python reference, e.g. `fr_FR`.
     /// Unknown locales require [`Self::with_endpoints`], rather than silently
     /// choosing a potentially incorrect authentication region.
@@ -151,4 +226,34 @@ fn root_url(input: &str) -> Result<Url> {
         url.set_path(&format!("{}/", url.path()));
     }
     Ok(url)
+}
+
+#[cfg(test)]
+mod tests {
+    #![allow(clippy::unwrap_used)]
+    use super::*;
+    use wiremock::{
+        Mock, MockServer, ResponseTemplate,
+        matchers::{method, path},
+    };
+    #[tokio::test]
+    async fn discovery_accepts_a_new_locale_and_ignores_incorrect_content_type() {
+        let server = MockServer::start().await;
+        Mock::given(method("GET"))
+            .and(path("/configuration/android/config_xx_XX.json"))
+            .respond_with(
+                ResponseTemplate::new(200)
+                    .set_body_json(serde_json::json!({"servers":{
+                        "gigyaProd":{"apikey":"gigya-key","target":"https://gigya.example.test"},
+                        "wiredProd":{"apikey":"wired-key","target":"https://wired.example.test"}
+                    }}))
+                    .insert_header("content-type", "application/octet-stream"),
+            )
+            .expect(1)
+            .mount(&server)
+            .await;
+        let config = Config::discover_from("xx_XX", &server.uri()).await.unwrap();
+        assert_eq!(config.country, "XX");
+        assert_eq!(config.endpoints.gigya_key, "gigya-key");
+    }
 }

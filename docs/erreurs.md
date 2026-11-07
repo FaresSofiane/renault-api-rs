@@ -62,7 +62,8 @@ erreur API générique. Le contexte de l’endpoint est donc conservé dans la l
 | `InvalidResponse { service, context }` | Contexte statique | JSON, enveloppe, type, date ou valeur invalide ; corps supérieur à la limite |
 | `UnsupportedEndpoint { endpoint, model_code }` | Fonction et modèle | Fonction connue comme indisponible, refusée avant sa requête de télémétrie |
 
-Les champs `service` utilisent `Service::Gigya` ou `Service::Kamereon`.
+Les champs `service` utilisent `Service::Gigya`, `Service::Kamereon` ou
+`Service::Configuration` pour la découverte de configuration régionale.
 Une erreur métier peut être présente dans une réponse HTTP 200. La bibliothèque
 la vérifie au lieu de considérer le statut seul comme un succès.
 
@@ -80,6 +81,8 @@ Le corps et les messages serveur ne sont pas inclus dans les erreurs publiques.
 | `err.func.wired.notFound`, `err.func.wired.not-found` | `NotFound` |
 | `err.func.wired.overloaded` | `QuotaExceeded` |
 | `err.func.privacy.on` | `PrivacyMode` |
+| `409001` | `ChargeModeInProgress` |
+| `err.func.wired.low.battery.level` | `InsufficientBattery` |
 | `err.tech.500`, `err.tech.wired.kamereon-proxy` | `Upstream` |
 | `err.func.wired.unauthorized` | `RenaultError::AuthenticationExpired` |
 | Autre code | `Other`, avec code brut conservé |

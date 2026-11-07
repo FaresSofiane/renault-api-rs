@@ -1,7 +1,7 @@
 # Documentation de Renault API Rust
 
 Cette documentation décrit le client asynchrone `RenaultApi` livré dans cette
-crate. Il expose les lectures et l’authentification de la V1. Les commandes à distance, historiques et contrats ne sont pas implémentés.
+crate. Il expose les lectures, commandes, historiques, contrats et l’authentification repris de la référence Python.
 
 ## Parcours de lecture
 
@@ -16,6 +16,8 @@ crate. Il expose les lectures et l’authentification de la V1. Les commandes à
 | Comprendre les runtimes, clones, caches et limites                         | [Architecture et concurrence](architecture.md) |
 | Préparer macOS, Windows, Linux, Android et iOS                             | [Plateformes](plateformes.md)                  |
 | Compiler, tester, maintenir et étendre la crate                            | [Développement](developpement.md)              |
+
+Voir aussi la [matrice de parité](parite.md) et le [guide des commandes](commandes.md).
 
 ## Exécution du client
 
@@ -48,11 +50,11 @@ Ne pas publier le jeton, les traces contenant des données personnelles ou les V
 
 ## État de la compatibilité
 
-Le cœur est une API Rust, sans ABI C ni binding Swift/Kotlin. Les vérifications
+La bibliothèque expose uniquement une API Rust. Les vérifications
 locales Apple et le workflow CI sont détaillés dans [Plateformes](plateformes.md).
 Une cible compilable ne signifie pas que l’authentification et le réseau ont été
 testés sur un appareil réel.
 
-Le protocole vient de la copie Python de `hacf-fr/renault-api`. Il s’agit d’une API
+Le protocole est adapté de `hacf-fr/renault-api` version `0.6.3`. Il s’agit d’une API
 privée pouvant changer côté Renault. La notice MIT d’origine est conservée dans
 [`LICENSE`](../LICENSE).

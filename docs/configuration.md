@@ -24,6 +24,15 @@ sont refusés. Une locale bien formée mais inconnue est également refusée par
 Cette liste reproduit la configuration de la référence Python, pas une liste
 de marchés dont le fonctionnement aurait été vérifié sur des comptes réels.
 
+`Config::discover(locale).await` télécharge explicitement le document public
+`configuration/android/config_<locale>.json` utilisé par la référence Python.
+Cette méthode accepte une nouvelle locale bien formée et permet de rafraîchir
+les clés/racines publiques sans modifier la table embarquée. Elle requiert Tokio
+et n’effectue aucune sauvegarde. `Config::new` reste entièrement local.
+
+Les getters `locale`, `country`, `endpoints` et `timeout`, ainsi que les getters
+des racines/clés sur `Endpoints`, permettent de consulter la configuration.
+
 ## Racines régionales
 
 | Région | Gigya | Kamereon |

@@ -47,6 +47,7 @@ valeurs serveur restent disponibles.
 |---|---|---|
 | `vin` | `Option<String>` | VIN dans les détails, éventuellement absent |
 | `registration_number` | `Option<String>` | Immatriculation |
+| `radio_code` | `Option<String>` | Code radio, information sensible |
 | `brand` | `Option<CodeLabel>` | Marque |
 | `model` | `Option<CodeLabel>` | Modèle, dont son code de compatibilité |
 | `energy` | `Option<CodeLabel>` | Énergie |
@@ -96,9 +97,9 @@ types numériques attendus échouent au décodage. Les autres mesures ne font pa
 l’objet d’un modèle physique de plausibilité. Certaines mesures Renault peuvent
 être erronées, même après conversion d’unités.
 
-`batteryCapacity`, `batteryAvailableEnergy` et `V2L_SystemStatusDisplay` ne sont
-pas exposés par cette V1. Ils ne doivent pas être déduits à partir d’autres
-champs sans une règle applicative explicite.
+`batteryCapacity` et `batteryAvailableEnergy` sont conservés dans `capacity_raw`
+et `available_energy_raw` sans inventer d’unité fiable. `V2L_SystemStatusDisplay`
+est conservé dans `v2l_system_status`.
 
 ## `PlugStatus`
 
@@ -172,3 +173,46 @@ standard ; ils ne sont pas resérialisés automatiquement en codes Renault.
 Ces structures ne sont donc pas des corps de requête à renvoyer à Renault.
 Le module privé `wire` gère les formes d’entrée et ignore les champs inconnus.
 Les enveloppes attendues et les valeurs typées invalides restent contrôlées.
+
+## Types complémentaires
+
+| Types | Champs et conventions |
+|---|---|
+| `BatterySoc` | `updated_at`, `soc_min`, `soc_target`, tous facultatifs |
+| `TyrePressure` | Quatre valeurs `*_raw` et quatre `*_status` ; l’unité des valeurs brutes n’est pas affirmée par la référence |
+| `HvacStatus` | Dates, températures, état brut et seuil SoC facultatifs |
+| `LockStatus` | État de verrouillage, quatre portes, hayon et date, avec alias absorbés |
+| `ResState` | `code`, `details`, facultatifs |
+| `CarAdapter` | Tous les champs de l’adaptateur Python, dont gateway, énergie, codes, dates/identifiants et extensions |
+| `ChargeMode` | `mode` brut facultatif ; distinct de `ChargeModeRequest` à l’écriture |
+| `ChargingSettings` | Mode, programmes, date de départ/date du relevé et délai brut |
+| `HvacSettings` | Mode, programmes et date du relevé |
+| `ChargeSchedule`, `HvacSchedule` | Alias de `WeeklySchedule<ChargeDay/HvacDay>` ; ID, activation et sept jours facultatifs |
+| `ChargeCalendar` | Jours vers listes de `CalendarSlot`, avec heures et durées brutes |
+| `EvSettings`, `EvProgram` | Champs KCM EV établis dans les fixtures, plus extensions conservées |
+| `ChargeScheduleData` | Enum `Calendar` ou `EvSettings` |
+| `ChargeHistory`, `ChargeSummary` | Agrégats facultatifs et indication d’unité des durées |
+| `Charges`, `ChargeSession` | Sessions facultatives, dates, niveaux, durées/puissances brutes et énergie/états disponibles |
+| `Contract`, `ContractCondition` | Type, identifiants, dates, durée, statut, conditions et extensions |
+| `Alert` | Identifiant, codes/descriptions, criticité, statut, dates et extensions |
+| `CommandReceipt`, `CommandAttributes` | Accusé HTTP, identifiants, commande/statut, attributs structurés et réglages EV éventuels |
+
+Les déclarations de champs complètes sont dans [`models/vehicle.rs`](../src/models/vehicle.rs)
+et dans la documentation Rust générée par `cargo doc`. Les types de nouvelles
+lectures acceptent les clés JSON amont via leurs règles Serde. Les horaires de
+programmation et réglages EV gardent les clés nécessaires aux corps du protocole.
+
+`ExtraFields` est un `BTreeMap<String, serde_json::Value>` pour ne pas perdre les
+champs dont le schéma est inconnu ou évolutif. Les notifications, historiques et
+sessions HVAC ne disposent pas de schéma établi dans les fixtures Python :
+`AdditionalData` et ses alias préservent tous leurs attributs dans `fields`.
+
+Les durées de charge restent brutes : `DurationUnit::Minutes` pour X101VE et
+`Seconds` par défaut, conformément à la règle du Python. Les valeurs des fixtures
+peuvent être incohérentes avec les dates sur certains modèles ; l’indication
+n’est pas une validation physique. `Charges::instantaneous_power_in_watts`
+identifie la convention X101VE. Les niveaux manquants restent absents.
+
+Les helpers de `VehicleDetails` indiquent l’énergie selon les codes Python.
+`CarAdapter` fournit les indications de gateway/énergie quand elles sont connues.
+Les programmations sont expliquées dans [Commandes](commandes.md).

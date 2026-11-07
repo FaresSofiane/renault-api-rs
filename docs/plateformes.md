@@ -1,16 +1,14 @@
-# Plateformes et intégration native
+# Plateformes Rust
 
 [Sommaire](README.md) · [Architecture](architecture.md)
 
 ## Portée
 
-La crate fournit une API Rust utilisable dans un binaire ou une bibliothèque
-Rust. Elle ne livre ni XCFramework, ni AAR Android, ni ABI C, ni bindings
-Swift/Kotlin/C#. Les construire reste une couche d’intégration indépendante.
+La crate fournit une API Rust utilisable depuis une application Rust, sur
+macOS, Windows, Linux, Android et iOS, avec les toolchains de la cible.
 
 Compiler la crate pour une plateforme vérifie son code et ses dépendances ;
-cela ne prouve pas qu’une application native peut déjà l’importer dans son
-langage, ni que le réseau a été testé sur un appareil de cette plateforme.
+cela ne prouve pas que le réseau a été testé sur un appareil de cette plateforme.
 
 ## Matrice de vérification
 
@@ -39,8 +37,7 @@ cargo check --locked --target x86_64-apple-darwin
 
 Installer préalablement les cibles manquantes avec `rustup target add`.
 Le provider `ring` a besoin du compilateur et des outils Apple appropriés.
-L’intégration doit exposer des appels asynchrones adaptés à une application
-SwiftUI/AppKit.
+Les appels s’exécutent dans le runtime Tokio de l’application appelante.
 
 ## iOS
 
@@ -51,11 +48,10 @@ cargo check --locked --target aarch64-apple-ios-sim
 cargo build --locked --target aarch64-apple-ios
 ```
 
-Ces commandes supposent macOS, Xcode et les SDK iOS installés. Elles ne créent
-pas à elles seules un module Swift. Une couche UniFFI ou FFI devra décrire
-l’interface exportée, convertir les types et conditionner les architectures.
+Ces commandes supposent macOS, Xcode et les SDK iOS installés ; elles compilent
+la bibliothèque Rust pour la cible choisie.
 
-Une future application iOS doit gérer sa propre durée de vie et ses tâches
+L’application iOS doit gérer sa propre durée de vie et ses tâches
 d’arrière-plan. Le client ne maintient pas le processus actif lorsque le système
 suspend l’application et n’installe pas de service de polling.
 
@@ -70,7 +66,7 @@ cargo check --examples --locked
 ```
 
 Le workflow utilise un runner Windows natif ; il ne valide pas toutes les
-combinaisons MSVC/GNU ou ARM64. Aucun binding .NET n’est inclus.
+combinaisons MSVC/GNU ou ARM64.
 
 ## Linux
 
@@ -109,24 +105,14 @@ Les chemins de NDK varient entre machines ; reprendre les variables de son
 installation plutôt que copier un chemin absolu d’un autre poste.
 
 Le client préconfigure Rustls avec les racines Mozilla. Il ne fait pas appel au
-vérificateur de certificats JVM Android pour établir ses connexions. Cela ne
-crée pas un binding JNI et ne remplace pas la configuration Android de
-l’application : celle-ci doit notamment déclarer l’accès réseau nécessaire et
-intégrer ses bibliothèques natives dans les ABI qu’elle distribue.
-
-## Interface depuis du code natif
-
-Une future couche de binding doit piloter explicitement le runtime Tokio et
-exposer des opérations asynchrones autour de `RenaultApi`. La crate ne fournit
-pas de runtime intégré ou de façade synchrone.
+vérificateur de certificats JVM Android pour établir ses connexions. L’application
+appelante reste responsable de la configuration Android, dont la permission
+réseau et les architectures qu’elle distribue.
 
 ## CI autonome
 
-Le workflow est dans [`.github/workflows/ci.yml`](../.github/workflows/ci.yml).
-Il est conçu pour un dépôt où cette crate se trouve à la racine. Tant qu’elle
-reste dans un sous-dossier d’un autre dépôt, GitHub ne découvre pas ce workflow
-imbriqué automatiquement. Le déplacer à la racine du futur dépôt indépendant,
-ou adapter explicitement le workflow du dépôt hôte.
+Le workflow est dans [`.github/workflows/ci.yml`](../.github/workflows/ci.yml)
+et exécute les commandes depuis la racine du dépôt de la crate.
 
 Ne pas confondre « workflow préparé » et « jobs exécutés avec succès » : les
 résultats Windows/Linux/Android devront être observés sur le dépôt où il tourne.

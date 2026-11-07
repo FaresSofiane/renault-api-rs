@@ -18,6 +18,7 @@ Les types de données se trouvent dans `renault_api::models`.
 | Signature | Comportement |
 |---|---|
 | `Config::new(locale: &str) -> Result<Config>` | Configuration d’une locale connue |
+| `Config::discover(locale: &str).await -> Result<Config>` | Configuration régionale téléchargée explicitement depuis Renault |
 | `Endpoints::new(gigya_url: &str, gigya_key: impl Into<String>, kamereon_url: &str, kamereon_key: impl Into<String>) -> Result<Endpoints>` | Racines et clés explicites |
 | `Config::with_endpoints(locale: &str, country: &str, endpoints: Endpoints) -> Result<Config>` | Locale/pays/configuration personnalisés |
 | `config.with_timeout(timeout: Duration) -> Result<Config>` | Consomme et retourne la configuration modifiée |
@@ -75,9 +76,7 @@ pour les unités et les routes ; aucune télémétrie n’est conservée.
 ### `vehicle_details`
 
 Demande toujours les détails au serveur et actualise le code modèle mémorisé.
-Le numéro d’immatriculation et les ressources sont facultatifs. Le code radio
-présent dans certaines réponses Python n’est pas exposé par les modèles publics
-de cette V1.
+Le numéro d’immatriculation et les ressources sont facultatifs. Le code radio est exposé lorsqu’il est présent dans la réponse.
 
 ### `battery_status`
 
@@ -135,10 +134,78 @@ les paramètres GET. Les cookies d’appareil sont envoyés explicitement sur le
 appels A2F et le login concerné ; la bibliothèque n’utilise pas de cookie jar
 global. Les méthodes réseau bas niveau restent privées.
 
-## Éléments non exposés en V1
+## Lectures supplémentaires
 
-La crate ne propose pas de `http_get`/`http_post` générique, de méthode de
-programmation, d’action sur le véhicule, de contrats ou d’historiques.
-Les routes KCM et le gateway `apis.renault.com` ne sont pas implémentés par cette
-V1 de lecture. Leur présence dans le Python ou sa documentation ne les rend
-pas accessibles automatiquement dans cette bibliothèque.
+Toutes les méthodes suivantes prennent le compte et le VIN. Elles retournent
+`Result<T>` et nécessitent `.await`.
+
+| Méthode | `T` |
+|---|---|
+| `car_adapter` | `CarAdapter` |
+| `contracts` | `Vec<Contract>` |
+| `alerts` | `Vec<Alert>` |
+| `battery_soc` | `BatterySoc` |
+| `tyre_pressure` | `TyrePressure` |
+| `hvac_status` | `HvacStatus` |
+| `hvac_settings` | `HvacSettings` |
+| `charge_mode` | `ChargeMode` |
+| `charging_settings` | `ChargingSettings` |
+| `lock_status` | `LockStatus` |
+| `res_state` | `ResState` |
+| `charge_schedule` | `ChargeScheduleData` |
+| `notification_settings` | `NotificationSettings` |
+
+`charge_schedule` distingue `Calendar` (KCA) et `EvSettings` (KCM).
+`battery_soc` lit une réponse KCM directe, sans enveloppe `data.attributes`.
+`lock_status` absorbe les variantes `doorStatus*` et `statusDoor*` ; lorsqu’elles
+coexistent, la valeur `doorStatus*` non null est prioritaire.
+
+`contracts` accepte le tableau direct de contrats et une enveloppe `contractList`.
+Les paramètres incluent locale, marque Renault et les trois catégories de
+contrats exposées par la référence. Les alertes acceptent un tableau direct ou
+un tableau `data`.
+
+### Historiques
+
+`charge_history` et `hvac_history` prennent ensuite `start: NaiveDate`,
+`end: NaiveDate` et `period: HistoryPeriod`. Les résultats sont respectivement
+`ChargeHistory` et `HvacHistory`.
+
+`charges` et `hvac_sessions` prennent `start: NaiveDate` et `end: NaiveDate`.
+Les résultats sont `Charges` et `HvacSessions`.
+
+La borne de début doit précéder ou égaler la borne de fin. Le format des dates
+est `YYYYMMDD` pour les jours et `YYYYMM` pour les agrégats mensuels. `type`
+vaut `day` ou `month` sur les agrégats. Les durées historiques brutes conservent
+une indication d’unité issue des règles du modèle, sans prétendre corriger une
+mesure incohérente côté serveur.
+
+### Support et routes
+
+`endpoint_definition(account_id, vin, endpoint: Endpoint)` retourne une
+`EndpointDefinition` contenant le chemin relatif de l’adaptateur et son mode.
+`supports_endpoint` retourne `Result<bool>` ; une route par défaut pour un
+modèle inconnu ne prouve pas le support réel par le véhicule.
+
+`Endpoint::ALL` énumère les 28 fonctions. Sa méthode pure
+`definition_for_model(Option<&str>)` permet de consulter la même table sans
+réseau. Les exclusions et modes KCA/KCM reproduisent les 25 tables Python.
+
+### HTTP bas niveau
+
+`http_get<T: DeserializeOwned>(endpoint: &str)` et
+`http_post<T: DeserializeOwned>(endpoint: &str, body: &serde_json::Value)`
+retournent `Result<T>`. Le chemin doit commencer par `/`, rester sur l’hôte
+configuré, ne contenir ni fragment ni backslash et ne pas remplacer le pays
+configuré. Les query strings sont acceptées. Les URLs absolues et `//host`
+sont refusés avant envoi. Le POST n’est jamais rejoué automatiquement.
+
+## Commandes
+
+Les signatures et conséquences sont détaillées dans [Commandes](commandes.md).
+Toutes retournent un `CommandReceipt` typé, avec extensions pour les attributs
+non établis. Les routes d’actions KCA, KCM start, pause/resume et `ev/settings`
+sont implémentées.
+
+Le gateway `apis.renault.com`, décrit mais non implémenté dans le client Python,
+n’est pas inclus. CLI, stockage persistant et proxies dépréciés sont exclus.

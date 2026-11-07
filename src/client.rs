@@ -18,6 +18,9 @@ use crate::{
 
 const MAX_RESPONSE_BYTES: usize = 2 * 1024 * 1024;
 
+#[path = "vehicle.rs"]
+mod vehicle;
+
 #[derive(Default)]
 struct State {
     login_token: Option<Zeroizing<String>>,
@@ -47,24 +50,7 @@ impl RenaultApi {
     /// TLS uses bundled Mozilla roots, avoiding mandatory Android JVM setup.
     /// Update dependencies to keep the root certificates current.
     pub fn new(config: Config) -> Result<Self> {
-        let roots = rustls::RootCertStore {
-            roots: webpki_roots::TLS_SERVER_ROOTS.to_vec(),
-        };
-        let tls = rustls::ClientConfig::builder_with_provider(Arc::new(
-            rustls::crypto::ring::default_provider(),
-        ))
-        .with_safe_default_protocol_versions()
-        .map_err(|_| RenaultError::Configuration("cannot initialize TLS protocol versions".into()))?
-        .with_root_certificates(roots)
-        .with_no_client_auth();
-        let http = Client::builder()
-            .tls_backend_preconfigured(tls)
-            .redirect(reqwest::redirect::Policy::none())
-            .retry(reqwest::retry::never())
-            .timeout(config.timeout)
-            .connect_timeout(config.timeout.min(std::time::Duration::from_secs(10)))
-            .user_agent(concat!("renault-api-rust/", env!("CARGO_PKG_VERSION")))
-            .build()?;
+        let http = http_client(config.timeout)?;
         Ok(Self {
             inner: Arc::new(Inner {
                 http,
@@ -387,27 +373,10 @@ impl RenaultApi {
     pub async fn battery_status(&self, account_id: &str, vin: &str) -> Result<BatteryStatus> {
         validate_vehicle(account_id, vin)?;
         let model = self.model_code(account_id, vin).await?;
-        if matches!(
-            model.as_deref(),
-            Some(
-                "BD11SL"
-                    | "DU31SU"
-                    | "XHN1ML"
-                    | "XHN1SU"
-                    | "XJA1VP"
-                    | "XJA2VP"
-                    | "XJB2CP"
-                    | "XJB2SU"
-                    | "XJF2BI"
-            )
-        ) {
-            return Err(RenaultError::UnsupportedEndpoint {
-                endpoint: "battery-status",
-                model_code: model.unwrap_or_default(),
-            });
-        }
+        let definition =
+            self.resolve_endpoint(model.as_deref(), crate::endpoints::Endpoint::BatteryStatus)?;
         let value = self
-            .vehicle_data(account_id, vin, "v2", "battery-status")
+            .endpoint_json(account_id, vin, definition, Method::GET, &[], None)
             .await?;
         wire::attributes::<wire::Battery>(value)?.into_public(model.as_deref())
     }
@@ -421,13 +390,11 @@ impl RenaultApi {
     pub async fn location(&self, account_id: &str, vin: &str) -> Result<Location> {
         validate_vehicle(account_id, vin)?;
         let model = self.model_code(account_id, vin).await?;
-        if matches!(model.as_deref(), Some("X101VE" | "XFB2BI")) {
-            return Err(RenaultError::UnsupportedEndpoint {
-                endpoint: "location",
-                model_code: model.unwrap_or_default(),
-            });
-        }
-        let value = self.vehicle_data(account_id, vin, "v1", "location").await?;
+        let definition =
+            self.resolve_endpoint(model.as_deref(), crate::endpoints::Endpoint::Location)?;
+        let value = self
+            .endpoint_json(account_id, vin, definition, Method::GET, &[], None)
+            .await?;
         wire::attributes::<wire::WireLocation>(value)?.into_public()
     }
 
@@ -662,6 +629,27 @@ impl RenaultApi {
     }
 
     async fn get(&self, path: &[&str]) -> Result<Value> {
+        self.request(Method::GET, path, &[], None).await
+    }
+
+    async fn request(
+        &self,
+        method: Method,
+        path: &[&str],
+        params: &[(&str, String)],
+        body: Option<&Value>,
+    ) -> Result<Value> {
+        let url = url_for(&self.inner.config.endpoints.kamereon_url, path)?;
+        self.request_url(method, url, params, body).await
+    }
+
+    async fn request_url(
+        &self,
+        method: Method,
+        url: Url,
+        params: &[(&str, String)],
+        body: Option<&Value>,
+    ) -> Result<Value> {
         let token = {
             let mut state = self.inner.state.lock().await;
             self.ensure_access_token(&mut state).await?;
@@ -675,15 +663,18 @@ impl RenaultApi {
         let mut header =
             HeaderValue::from_str(&token).map_err(|_| RenaultError::InvalidAccessToken)?;
         header.set_sensitive(true);
-        let url = url_for(&self.inner.config.endpoints.kamereon_url, path)?;
-        let request = self
+        let mut request = self
             .inner
             .http
-            .get(url)
+            .request(method, url)
             .header("content-type", "application/vnd.api+json")
             .header("apikey", &self.inner.config.endpoints.kamereon_key)
             .header("x-gigya-id_token", header)
-            .query(&[("country", &self.inner.config.country)]);
+            .query(&[("country", &self.inner.config.country)])
+            .query(params);
+        if let Some(body) = body {
+            request = request.json(body);
+        }
         let result = async {
             let (status, value) = read_json(request.send().await?, Service::Kamereon).await?;
             wire::check_error(&value, Service::Kamereon, status, false)?;
@@ -761,7 +752,7 @@ fn with_device_cookies(request: RequestBuilder, device_ids: &DeviceIds) -> Resul
 }
 
 fn check_http(status: u16, service: Service) -> Result<()> {
-    if status == 401 {
+    if status == 401 && service != Service::Configuration {
         return Err(RenaultError::AuthenticationExpired);
     }
     if !(200..300).contains(&status) {
@@ -770,8 +761,11 @@ fn check_http(status: u16, service: Service) -> Result<()> {
     Ok(())
 }
 
-async fn read_json(mut response: Response, service: Service) -> Result<(u16, Value)> {
+pub(crate) async fn read_json(mut response: Response, service: Service) -> Result<(u16, Value)> {
     let status = response.status().as_u16();
+    if matches!(status, 204 | 205) {
+        return Ok((status, Value::Null));
+    }
     let mut body = Vec::new();
     while let Some(chunk) = response.chunk().await? {
         if body.len().saturating_add(chunk.len()) > MAX_RESPONSE_BYTES {
@@ -842,4 +836,26 @@ fn required_string(value: &Value, pointer: &str, service: Service) -> Result<Str
             service,
             context: "missing required identifier or token",
         })
+}
+
+pub(crate) fn http_client(timeout: std::time::Duration) -> Result<Client> {
+    let roots = rustls::RootCertStore {
+        roots: webpki_roots::TLS_SERVER_ROOTS.to_vec(),
+    };
+    let tls = rustls::ClientConfig::builder_with_provider(Arc::new(
+        rustls::crypto::ring::default_provider(),
+    ))
+    .with_safe_default_protocol_versions()
+    .map_err(|_| RenaultError::Configuration("cannot initialize TLS protocol versions".into()))?
+    .with_root_certificates(roots)
+    .with_no_client_auth();
+    let http = Client::builder()
+        .tls_backend_preconfigured(tls)
+        .redirect(reqwest::redirect::Policy::none())
+        .retry(reqwest::retry::never())
+        .timeout(timeout)
+        .connect_timeout(timeout.min(std::time::Duration::from_secs(10)))
+        .user_agent(concat!("renault-api-rust/", env!("CARGO_PKG_VERSION")))
+        .build()?;
+    Ok(http)
 }

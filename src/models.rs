@@ -4,6 +4,9 @@
 use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 
+mod vehicle;
+pub use vehicle::*;
+
 #[derive(Debug, Clone, PartialEq, Eq, Deserialize, Serialize)]
 pub struct Account {
     pub id: String,
@@ -29,6 +32,7 @@ pub struct CodeLabel {
 pub struct VehicleDetails {
     pub vin: Option<String>,
     pub registration_number: Option<String>,
+    pub radio_code: Option<String>,
     pub brand: Option<CodeLabel>,
     pub model: Option<CodeLabel>,
     pub energy: Option<CodeLabel>,
@@ -37,6 +41,23 @@ pub struct VehicleDetails {
 }
 
 impl VehicleDetails {
+    pub fn uses_electricity(&self) -> bool {
+        matches!(
+            self.engine_energy_type
+                .as_deref()
+                .or_else(|| self.energy.as_ref()?.code.as_deref()),
+            Some("ELEC" | "ELECX" | "PHEV")
+        )
+    }
+
+    pub fn uses_fuel(&self) -> bool {
+        matches!(
+            self.engine_energy_type
+                .as_deref()
+                .or_else(|| self.energy.as_ref()?.code.as_deref()),
+            Some("OTHER" | "PHEV" | "HEV")
+        )
+    }
     pub fn model_code(&self) -> Option<&str> {
         self.model.as_ref()?.code.as_deref()
     }
@@ -83,6 +104,10 @@ pub struct BatteryStatus {
     pub charging_remaining_minutes: Option<u32>,
     /// This estimate can have a different timestamp from the battery reading.
     pub charging_remaining_updated_at: Option<DateTime<Utc>>,
+    /// Preserved upstream values; the reference does not establish reliable units.
+    pub capacity_raw: Option<f64>,
+    pub available_energy_raw: Option<f64>,
+    pub v2l_system_status: Option<i32>,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Deserialize, Serialize)]

@@ -9,14 +9,16 @@ utilise également un compilateur C pour le provider cryptographique `ring`.
 Le code livré a été vérifié avec le toolchain installé, pas avec toutes les
 versions de Rust à partir de ce minimum déclaré.
 
-Le dossier de cette crate est autonome : son `Cargo.toml`, ses sources, ses
-fixtures et ses tests n’utilisent pas de fichiers du backend ou du frontend.
+La compilation et l’exécution de la crate ne nécessitent ni Python ni service
+de stockage. Les fixtures nécessaires aux tests sont incluses dans le paquet.
 
-## Installation asynchrone
+## Installation depuis crates.io
+
+Après publication de la version `0.1.0`, ajouter à votre `Cargo.toml` :
 
 ```toml
 [dependencies]
-renault-api = { path = "../renault-api-rs" }
+renault-api = "0.1"
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 ```
 
@@ -77,9 +79,3 @@ if let Some(updated_at) = battery.updated_at {
 `battery_status` peut demander les détails du véhicule avant le relevé pour
 connaître son modèle et normaliser les unités. Une valeur `None` indique une
 absence de donnée, pas une batterie vide. Un relevé horodaté peut être ancien.
-
-## Intégration native
-
-L’application ou sa future couche de binding doit organiser l’exécution dans
-Tokio et exposer des opérations asynchrones adaptées à son interface native.
-Le cœur Rust ne fournit pas de façade synchrone.

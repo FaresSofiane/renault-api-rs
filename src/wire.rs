@@ -20,6 +20,7 @@ pub(crate) fn check_error(
     verifying_code: bool,
 ) -> Result<()> {
     match service {
+        Service::Configuration => Ok(()),
         Service::Gigya => {
             let code = value.get("errorCode").and_then(Value::as_i64).ok_or(
                 RenaultError::InvalidResponse {
@@ -62,6 +63,8 @@ pub(crate) fn check_error(
                 "err.func.wired.notFound" | "err.func.wired.not-found" => ApiErrorKind::NotFound,
                 "err.func.wired.overloaded" => ApiErrorKind::QuotaExceeded,
                 "err.func.privacy.on" => ApiErrorKind::PrivacyMode,
+                "409001" => ApiErrorKind::ChargeModeInProgress,
+                "err.func.wired.low.battery.level" => ApiErrorKind::InsufficientBattery,
                 "err.tech.500" | "err.tech.wired.kamereon-proxy" => ApiErrorKind::Upstream,
                 _ => ApiErrorKind::Other,
             };
@@ -127,6 +130,7 @@ impl WireVehicle {
 pub(crate) struct Details {
     vin: Option<String>,
     registration_number: Option<String>,
+    radio_code: Option<String>,
     brand: Option<CodeLabel>,
     model: Option<CodeLabel>,
     energy: Option<CodeLabel>,
@@ -155,6 +159,7 @@ impl From<Details> for VehicleDetails {
         Self {
             vin: v.vin,
             registration_number: v.registration_number,
+            radio_code: v.radio_code,
             brand: v.brand,
             model: v.model,
             energy: v.energy,
@@ -183,15 +188,24 @@ impl From<Details> for VehicleDetails {
 }
 
 pub(crate) fn attributes<T: DeserializeOwned>(value: Value) -> Result<T> {
-    let attributes = value
-        .get("data")
-        .and_then(|d| d.get("attributes"))
-        .filter(|a| a.is_object())
-        .cloned()
-        .ok_or(RenaultError::InvalidResponse {
-            service: Service::Kamereon,
-            context: "missing data.attributes object",
-        })?;
+    let data =
+        value
+            .get("data")
+            .filter(|data| data.is_object())
+            .ok_or(RenaultError::InvalidResponse {
+                service: Service::Kamereon,
+                context: "missing data object",
+            })?;
+    let attributes = match data.get("attributes") {
+        None | Some(Value::Null) => serde_json::json!({}),
+        Some(value) if value.is_object() => value.clone(),
+        _ => {
+            return Err(RenaultError::InvalidResponse {
+                service: Service::Kamereon,
+                context: "invalid attributes object",
+            });
+        }
+    };
     decode(attributes, Service::Kamereon)
 }
 
@@ -207,6 +221,10 @@ pub(crate) struct Battery {
     charging_instantaneous_power: Option<f64>,
     charging_remaining_time: Option<u32>,
     charging_remaining_time_last_update_date_time: Option<DateTime<Utc>>,
+    battery_capacity: Option<f64>,
+    battery_available_energy: Option<f64>,
+    #[serde(rename = "V2L_SystemStatusDisplay")]
+    v2l_system_status: Option<i32>,
 }
 
 impl Battery {
@@ -233,6 +251,9 @@ impl Battery {
             }),
             charging_remaining_minutes: self.charging_remaining_time,
             charging_remaining_updated_at: self.charging_remaining_time_last_update_date_time,
+            capacity_raw: self.battery_capacity,
+            available_energy_raw: self.battery_available_energy,
+            v2l_system_status: self.v2l_system_status,
         })
     }
 }

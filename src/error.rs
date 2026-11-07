@@ -5,6 +5,7 @@ pub type Result<T> = std::result::Result<T, RenaultError>;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Service {
+    Configuration,
     Gigya,
     Kamereon,
 }
@@ -26,6 +27,8 @@ pub enum ApiErrorKind {
     PrivacyMode,
     InvalidInput,
     Upstream,
+    ChargeModeInProgress,
+    InsufficientBattery,
     Other,
 }
 
