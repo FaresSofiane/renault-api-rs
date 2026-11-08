@@ -16,6 +16,7 @@ crate. Il expose les lectures, commandes, historiques, contrats et l’authentif
 | Comprendre les runtimes, clones, caches et limites                         | [Architecture et concurrence](architecture.md) |
 | Préparer macOS, Windows, Linux, Android et iOS                             | [Plateformes](plateformes.md)                  |
 | Compiler, tester, maintenir et étendre la crate                            | [Développement](developpement.md)              |
+| Configurer le secret GitHub et publier une version sur crates.io          | [Publication](publication.md)                  |
 
 Voir aussi la [matrice de parité](parite.md) et le [guide des commandes](commandes.md).
 

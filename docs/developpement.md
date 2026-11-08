@@ -132,3 +132,6 @@ sans cette option.
 
 Le workflow CI inclut des vérifications desktop et mobiles. Les détails et
 limites de chaque cible sont dans [Plateformes](plateformes.md).
+La [publication automatisée](publication.md) ajoute une vérification du paquet
+sur chaque push et pull request, puis un envoi sur crates.io pour les tags de
+version lorsque tous les jobs réussissent.

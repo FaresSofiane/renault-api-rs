@@ -136,6 +136,8 @@ remplacent pas les essais sur compte et véhicule réels.
 Les prérequis de compilation des cibles Rust sont décrits dans
 [Plateformes](docs/plateformes.md). Un workflow CI
 préparé n’équivaut pas à des jobs déjà exécutés sur Windows, Linux ou Android.
+La [publication automatisée sur crates.io](docs/publication.md) s’exécute sur
+les tags de version, après réussite de toutes les vérifications.
 
 ## Origine
 
